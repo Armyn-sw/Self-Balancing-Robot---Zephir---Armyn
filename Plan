@@ -1,0 +1,70 @@
+## Work plan : robot auto-équilibré
+
+Avant tout, une règle : **la liste de matériel passe en premier**, parce que la livraison prend 1 à 3 semaines. Pendant ce temps, vous faites la CAO, la théorie et le code de base en parallèle.
+
+### Phase 0 : Cadrage (1 soirée)
+- Définir l'objectif final et ce que veut dire « réussi ».
+- Se répartir les rôles (mécanique, électronique, code, automatique).
+- Créer un dépôt Git et un endroit pour les notes.
+
+**À se demander :** qu'est-ce que le robot doit savoir faire à la fin ? Juste tenir debout, ou aussi avancer et être télécommandé ?
+**Fin de phase :** une page d'objectifs.
+
+### Phase 1 : Étudier les références (quelques jours)
+- Lire ou regarder les projets de référence en entier, avant de copier quoi que ce soit.
+- Repérer leur architecture : capteurs, drivers, alimentation, structure du code.
+
+**À se demander :** comment le robot mesure-t-il son angle ? Comment commande-t-il les moteurs ? Quelles boucles de contrôle contient-il ?
+**Fin de phase :** un schéma-bloc du système dessiné par vous.
+
+### Phase 2 : Architecture et liste de matériel (1 semaine)
+- Choisir chaque composant et vérifier qu'ils sont compatibles entre eux (tensions, logique 3,3 V, broches, courant).
+- Faire un schéma électrique simple.
+- **Commander.**
+
+**À se demander :** quelle tension pour quel composant ? Combien de broches faut-il ? Quel courant la batterie doit-elle fournir ?
+**Fin de phase :** la nomenclature (BOM) avec les prix, et la commande passée.
+
+### Phase 3 : En parallèle, pendant la livraison
+| Mécanique | Théorie | Code |
+|---|---|---|
+| CAO v1 du châssis à partir des dimensions des datasheets | Équations du pendule inversé sur roues | Structure du programme et des boucles |
+| Placement des composants, centre de gravité | Premier modèle MATLAB en simulation | Squelette du code (lecture IMU, timers) |
+
+**Fin de phase :** des STL prêts à imprimer, une simulation qui tourne, un code qui compile.
+
+### Phase 4 : Tester chaque sous-système séparément
+- L'IMU seule : est-ce que l'angle estimé est juste et stable ?
+- Un moteur seul : est-ce qu'il tourne proprement à différentes vitesses ?
+- L'alimentation : est-ce que les tensions sont correctes sous charge ?
+
+**Règle :** on n'assemble rien tant que chaque morceau ne marche pas seul.
+
+### Phase 5 : Impression et assemblage
+- Imprimer, monter, câbler proprement.
+- Mesurer les vraies valeurs (masse, centre de gravité) et les comparer au modèle.
+
+### Phase 6 : Intégration et premier équilibre (PID)
+- Une seule boucle d'abord (l'angle), puis la boucle externe (vitesse ou position).
+- Régler les gains étape par étape et noter chaque essai.
+
+**Fin de phase :** le robot tient debout.
+
+### Phase 7 : Itérer
+- Corriger ce qui ne va pas : vibrations, dérive, saturation.
+- Prévoir une CAO v2 si nécessaire.
+
+### Phase 8 : LQR et comparaison
+- Mettre à jour le modèle MATLAB avec les valeurs mesurées, calculer le LQR et l'implémenter.
+- Définir des tests identiques pour les deux contrôleurs (poussée, poids ajouté).
+
+**Fin de phase :** des graphiques PID vs LQR.
+
+### Phase 9 : Documentation
+- Mettre le dépôt GitHub au propre, écrire un court rapport, tourner une vidéo.
+
+## Ordre résumé
+
+**Cadrage → Références → Matériel (commande) → [CAO + Théorie + Code en parallèle] → Tests unitaires → Assemblage → PID → Itération → LQR → Documentation**
+
+Je peux aussi transformer ce plan en liste de tâches partagée, avec un responsable et une date par étape.

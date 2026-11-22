@@ -60,20 +60,6 @@ ce qui donne :
 \ddot{\theta} = \frac{m_b l \sin(\theta)\left(g + \dfrac{m_b l \cos(\theta)\,\dot{\theta}^2}{M}\right) - 2\left(R + \dfrac{m_b l \cos(\theta)}{M}\right)\dfrac{T_w}{R}}{J - \dfrac{(m_b l \cos(\theta))^2}{M}}
 ```
 
-> Source des équations : [Theory and design of two wheels self-balancing robot](https://fkeng.blogspot.com/2019/03/theory-and-design-of-two-wheels-self.html)
-
-### Implémentation (Python)
-
-```python
-import math
-
-xdd = (mb*l*math.sin(theta)*(thetad**2) - ((mb*l)**2)*g*math.cos(theta)*math.sin(theta)/(mb*(l**2)+Jb) +
-       2*Tw*(1/R + mb*l*math.cos(theta)/(mb*(l**2)+Jb))) / (mb + 2*(mw+Jw/(R**2)) - ((mb*l*math.cos(theta))**2)/(mb*(l**2) + Jb))
-
-thetadd = (mb*l*math.sin(theta)*(g + mb*l*math.cos(theta)*(thetad**2)/(mb + 2*(mw + Jw/(R**2)))) -
-           2*(R + mb*l*math.cos(theta)/(mb + 2*(mw + Jw/(R**2))))*Tw/R) / (Jb + mb*(l**2) - ((mb*l*math.cos(theta))**2)/(mb + 2*(mw + Jw/(R**2))))
-```
-
 ### Contrôle PD
 
 Correcteur proportionnel-dérivé avec dérivée filtrée :

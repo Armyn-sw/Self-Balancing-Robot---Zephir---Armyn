@@ -72,7 +72,7 @@ ce qui donne :
 | ESP32 DevKit | Microcontrôleur qui fait tourner l'algorithme d'équilibre (PID). Bluetooth et Wi-Fi intégrés pour piloter ou régler depuis un téléphone | [Rechercher](https://www.amazon.fr/s?k=ESP32+DevKit) |
 | MPU6050 (x2) | Gyroscope et accéléromètre qui mesurent l'inclinaison du robot. Le 2e sert de rechange | [Rechercher](https://www.amazon.fr/s?k=MPU6050) |
 
-## Motorisation : option A, moteurs pas à pas (conseillée pour débuter)
+## Motorisation :  moteurs pas à pas (conseillée pour débuter)
 
 | NOM | Utilité | Lien |
 |---|---|---|
@@ -80,13 +80,6 @@ ce qui donne :
 | Driver TMC2209 (x2) | Pilotent les moteurs pas à pas, de façon silencieuse | [Rechercher](https://www.amazon.fr/s?k=TMC2209+driver) |
 | Coupleur / moyeu 5 mm (x2) | Fixent les roues sur l'axe des moteurs | [Rechercher](https://www.amazon.fr/s?k=moyeu+roue+axe+5mm) |
 
-## Motorisation : option B, moteurs DC (plus léger)
-
-| NOM | Utilité | Lien |
-|---|---|---|
-| Moteur JGA25-370 avec encodeur (x2) | Font tourner les roues. L'encodeur mesure la vitesse réelle | [Rechercher](https://www.amazon.fr/s?k=JGA25-370+encodeur) |
-| Driver TB6612FNG | Pilote les deux moteurs DC | [Rechercher](https://www.amazon.fr/s?k=TB6612FNG) |
-| Coupleur / moyeu 4 mm (x2) | Fixent les roues sur l'axe des moteurs | [Rechercher](https://www.amazon.fr/s?k=moyeu+roue+axe+4mm) |
 
 ## Alimentation
 

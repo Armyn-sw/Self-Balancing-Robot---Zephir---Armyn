@@ -1,0 +1,57 @@
+%Calcul du robot
+clc, clearvars, close all
+%Constantes
+vit_max = 1.3 ; %4.7 km par h 
+g = 9.81 ; %gravité
+angle_init = 10 *pi/180 ; %rad
+
+
+
+%Parameters of Motor Driver 
+Kmd = 3.16;             %Voltage gain of motor driver.
+
+%Parameters of Wheel 
+R = 0.0425;             % rayon
+mw = 0.0343;            % kg - Mass of wheel.
+Jw = 0.5*mw*R^2;        % kgm2 - Moment inertia of wheel reference to the center (axle).
+                        
+% Parameters of Robot Body 
+mb = 0.8;            % kg - Mass of body.
+lb = 0.065;             % m - Distance of center of mass to wheel axle.
+Jb = 0.1*mb*lb^2;     %kgm2 masse fois axe au carre
+
+%Calcul moteur
+circ_roue = pi * R*2;
+rpm_th_max = vit_max / (circ_roue) *60
+couple_th = mb*g*lb*sin(angle_init)/2 %car deux roues
+
+%Parametre moteur 
+
+Tstall = 4/10.1972;     % N-m - stall torque (4 kg.cm).
+RPMnoload = 333;        %No-load RPM at Vin.
+wnl = (RPMnoload*2*pi)/60;     %No load gearbox output shaft rotation velocity in rad/sec.
+Inl = 0.15;             % No load current into motor, from measurement.
+Vin = 12;                %Volt. Input voltage to armature during test.
+Ng = 30;               % Gear ratio.
+
+Istall = 2.4;           % Amp, stall armature current.
+% Dg = 0.00001;           % kgm/rad/sec - Viscous loss of gear.
+% La = 0;                 % Assume armature inductance is 0.
+
+Ra = Vin/Istall;            %Armature resistance.
+Kt = (Tstall/(Vin*Ng))*Ra;   % Armature torque constant.
+Kb = (Vin-Ra*Inl)/(wnl*Ng);           %Armature back EMF constant.
+
+
+
+%modele physique 
+Cm1 = Ng*Kt/Ra;
+Cm2 = Cm1*Kb*Ng;
+M = mb + 2*(mw+Jw/(R*R)) - ((mb*mb*lb*lb)/(mb*lb*lb + Jb));
+J = (mb*lb*lb) + Jb - ((mb*mb*lb*lb)/(mb + 2*(mw+Jw/(R*R))));
+C1 = (1/M)*((mb*mb*lb*lb*g)/(Jb + mb*lb*lb));
+C2 = (2/M)*((1/R) + ((mb*lb)/(Jb + mb*lb*lb)));
+C3 = (mb*lb*g)/J;
+C4 = (2/(J*R))*(R + ((mb*lb)/(mb + 2*(mw + Jw/(R*R)))));
+
+
